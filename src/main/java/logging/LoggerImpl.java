@@ -1,70 +1,39 @@
 package logging;
 
 import logging.enums.LogLevel;
-import logging.exception.InvalidJsonException;
-import logging.exception.InvalidJsonKeyException;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import java.text.MessageFormat;
+import java.util.Calendar;
+import java.util.Objects;
+import java.util.TimeZone;
 
 public class LoggerImpl implements Logger {
     String outPutFile;
     LogLevel logLevel;
+    LogParser logParser = new LogParser();
+    LogFileAppender logFileAppender = new LogFileAppender();
+
     @Override
     public void setOutputFile(String outPutFileNameInJson) {
-        outPutFile = parseStringValueFromJsonStringByKey(outPutFileNameInJson, "outPutFile");
-        System.out.println(outPutFile);
+        outPutFile = logParser.parseStringValueFromJsonStringByKey(outPutFileNameInJson, "outPutFile");
     }
 
     @Override
     public void setLogLevel(String logLevelInJson) {
-        logLevel = parseLogLevelFromJson(logLevelInJson);
+        logLevel = logParser.parseLogLevelFromJson(logLevelInJson);
     }
 
     @Override
     public void addLog(String logInJson) {
-
+        String logToSave = generateLogByLogJson(logInJson);
+        System.out.println(logToSave);
+        logFileAppender.append(outPutFile,logToSave);
     }
 
-    private String parseStringValueFromJsonStringByKey(String jsonString, String key) {
-        String result;
-        JSONObject jsonObject = tryParse(jsonString);
-        result = getStringValue(jsonObject, key);
-        return result;
-    }
-
-    private String getStringValue(JSONObject outPutFileJson, String key) {
-        String result;
-        try {
-            result = outPutFileJson.getString(key);
-        } catch (JSONException e) {
-            throw new InvalidJsonKeyException();
-        }
-        return result;
-    }
-
-    private JSONObject tryParse(String outPutFileNameInJson) {
-        JSONObject result;
-        try {
-            result = new JSONObject(outPutFileNameInJson);
-        } catch (JSONException e) {
-            throw new InvalidJsonException();
-        }
-        return result;
-    }
-
-    private LogLevel parseLogLevelFromJson(String logLevelInJson) {
-        String logLevelString = parseStringValueFromJsonStringByKey(logLevelInJson, "logLevel");
-        return convertStringToLogLevel(logLevelString);
-    }
-
-    private LogLevel convertStringToLogLevel(String logLevelString) {
-        LogLevel result = null;
-        switch (logLevelString) {
-            case "debug" -> result = LogLevel.DEBUG;
-            case "info" -> result = LogLevel.INFO;
-            case "warning" -> result = LogLevel.WARNING;
-            case "error" -> result = LogLevel.ERROR;
-        }
-        return result;
+    private String generateLogByLogJson(String logInJson) {
+        String message = logParser.parseStringValueFromJsonStringByKey(logInJson, "message");
+        String processId = logParser.parseStringValueFromJsonStringByKey(logInJson, "processId");
+        return MessageFormat.format("{0}|{1}|{2}|{3}",
+                logLevel, Calendar.getInstance(TimeZone.getDefault()).getTime(), Objects.toString(processId, ""), message);
     }
 }
