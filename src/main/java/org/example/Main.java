@@ -11,7 +11,7 @@ public class Main {
                 """
         );
         logger.setLogLevel("""
-        {"level" : "warning"}
+        {"logLevel" : "warning"}
         """);
         logger.addLog("""
                 {
