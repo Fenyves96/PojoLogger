@@ -1,4 +1,4 @@
-package logging.enums;
+package pojologger.logging.enums;
 
 import org.apache.commons.lang.StringUtils;
 

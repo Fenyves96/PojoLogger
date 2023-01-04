@@ -1,6 +1,6 @@
-package logging;
+package pojologger.logging;
 
-import logging.enums.LogLevel;
+import pojologger.logging.enums.LogLevel;
 
 import java.text.MessageFormat;
 import java.util.Calendar;

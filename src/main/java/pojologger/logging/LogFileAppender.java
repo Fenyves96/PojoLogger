@@ -1,4 +1,4 @@
-package logging;
+package pojologger.logging;
 
 import org.apache.commons.io.FileUtils;
 

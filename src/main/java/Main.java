@@ -1,7 +1,5 @@
-package org.example;
-
-import logging.Logger;
-import logging.LoggerImpl;
+import pojologger.logging.Logger;
+import pojologger.logging.LoggerImpl;
 
 public class Main {
     public static void main(String[] args) {

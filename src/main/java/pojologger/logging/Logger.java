@@ -1,4 +1,4 @@
-package logging;
+package pojologger.logging;
 
 public interface Logger {
     void setOutputFile(String outPutFileNameInJson);

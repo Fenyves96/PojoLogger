@@ -1,4 +1,4 @@
-package logging;
+package pojologger.logging;
 public class LoggerImpl implements Logger {
     Log log = new Log();
     LogParser logParser = new LogParser();

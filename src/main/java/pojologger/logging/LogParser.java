@@ -1,7 +1,7 @@
-package logging;
+package pojologger.logging;
 
-import logging.enums.LogLevel;
-import logging.exception.InvalidJsonException;
+import pojologger.logging.enums.LogLevel;
+import pojologger.logging.exception.InvalidJsonException;
 import org.apache.commons.lang.math.NumberUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
