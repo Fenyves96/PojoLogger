@@ -2,6 +2,7 @@ package logging;
 
 import logging.enums.LogLevel;
 import logging.exception.InvalidJsonException;
+import org.apache.commons.lang.math.NumberUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,5 +38,10 @@ public class LogParser {
     public LogLevel parseLogLevelFromJson(String logLevelInJson) {
         String logLevelString = parseStringValueFromJsonStringByKey(logLevelInJson, "logLevel");
         return LogLevel.getLevel(logLevelString);
+    }
+
+    public int parseIntValueFromJsonStringByKey(String jsonString, String key) {
+        String stringValue = parseStringValueFromJsonStringByKey(jsonString, key);
+        return NumberUtils.createInteger(stringValue);
     }
 }

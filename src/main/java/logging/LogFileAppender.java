@@ -7,15 +7,17 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class LogFileAppender {
-    public void append(String fileName, String log){
-        writeToFile(log, new File(fileName));
+    public void append(Log log) {
+        writeToFile(log);
     }
 
-    private static void writeToFile(String log, File file) {
+    private void writeToFile(Log log) {
         try {
-            FileUtils.writeStringToFile(file, log + "\n", StandardCharsets.UTF_8, true);
+            FileUtils.writeStringToFile(new File(log.getOutPutFile()), log + "\n", StandardCharsets.UTF_8, true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+
 }
