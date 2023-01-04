@@ -36,17 +36,6 @@ public class LogParser {
 
     public LogLevel parseLogLevelFromJson(String logLevelInJson) {
         String logLevelString = parseStringValueFromJsonStringByKey(logLevelInJson, "logLevel");
-        return convertStringToLogLevel(logLevelString);
-    }
-
-    private LogLevel convertStringToLogLevel(String logLevelString) {
-        LogLevel result = null;
-        switch (logLevelString) {
-            case "debug" -> result = LogLevel.DEBUG;
-            case "info" -> result = LogLevel.INFO;
-            case "warning" -> result = LogLevel.WARNING;
-            case "error" -> result = LogLevel.ERROR;
-        }
-        return result;
+        return LogLevel.getLevel(logLevelString);
     }
 }

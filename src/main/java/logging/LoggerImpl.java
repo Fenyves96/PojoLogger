@@ -34,6 +34,7 @@ public class LoggerImpl implements Logger {
         String message = logParser.parseStringValueFromJsonStringByKey(logInJson, "message");
         String processId = logParser.parseStringValueFromJsonStringByKey(logInJson, "processId");
         return MessageFormat.format("{0}|{1}|{2}|{3}",
-                logLevel, Calendar.getInstance(TimeZone.getDefault()).getTime(), Objects.toString(processId, ""), message);
+                logLevel, Calendar.getInstance(TimeZone.getDefault()).getTime(),
+                Objects.toString(processId, ""), message);
     }
 }
