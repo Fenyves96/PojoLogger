@@ -40,7 +40,7 @@ public class LogParser {
         return LogLevel.getLevel(logLevelString);
     }
 
-    public int parseIntValueFromJsonStringByKey(String jsonString, String key) {
+    public Integer parseIntValueFromJsonStringByKey(String jsonString, String key) {
         String stringValue = parseStringValueFromJsonStringByKey(jsonString, key);
         return NumberUtils.createInteger(stringValue);
     }

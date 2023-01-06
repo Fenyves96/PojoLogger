@@ -34,6 +34,8 @@ public class Log {
         return outPutFile;
     }
 
+    public LogLevel getLevel () {return level;}
+
     @Override
     public String toString(){
         return MessageFormat.format("{0}|{1}|{2}|{3}",

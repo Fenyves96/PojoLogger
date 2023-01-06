@@ -1,4 +1,5 @@
 import org.apache.commons.lang.StringUtils;
+import pojologger.exception.PojoLoggerException;
 import pojologger.logging.Logger;
 import pojologger.logging.LoggerImpl;
 
@@ -13,10 +14,14 @@ public class Main {
         while (!"X".equals(StringUtils.upperCase(command))) {
             System.out.print("Command (F,L,A): ");
             command = sc.next();
-            switch (StringUtils.upperCase(command)) {
-                case "F" -> setFileName(sc, logger);
-                case "L" -> setLogLevel(sc, logger);
-                case "A" -> addLog(sc, logger);
+            try {
+                switch (StringUtils.upperCase(command)) {
+                    case "F" -> setFileName(sc, logger);
+                    case "L" -> setLogLevel(sc, logger);
+                    case "A" -> addLog(sc, logger);
+                }
+            }catch (PojoLoggerException ex){
+                System.out.println(ex.getMessage());
             }
         }
     }
