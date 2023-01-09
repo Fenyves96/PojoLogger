@@ -11,8 +11,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Logger logger = new LoggerImpl();
         String command = null;
-        while (!"X".equals(StringUtils.upperCase(command))) {
-            System.out.print("Command (F,L,A): ");
+        while (!"Q".equals(StringUtils.upperCase(command))) {
+            System.out.print("Command (F,L,A,Q) (File, Level, ProcessId|Message, quit) : ");
             command = sc.next();
             try {
                 switch (StringUtils.upperCase(command)) {

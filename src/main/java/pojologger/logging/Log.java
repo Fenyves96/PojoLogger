@@ -8,15 +8,9 @@ import java.util.Objects;
 import java.util.TimeZone;
 
 public class Log {
-
-    private String outPutFile;
     private LogLevel level;
     private String message;
     private int processId;
-
-    public void setOutPutFile(String outPutFile) {
-        this.outPutFile = outPutFile;
-    }
 
     public void setLevel(LogLevel level) {
         this.level = level;
@@ -30,9 +24,6 @@ public class Log {
         this.processId = processId;
     }
 
-    public String getOutPutFile() {
-        return outPutFile;
-    }
 
     public LogLevel getLevel () {return level;}
 

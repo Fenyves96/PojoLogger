@@ -14,7 +14,7 @@ public class LoggerImpl implements Logger {
     public void setOutputFile(String outPutFileNameInJson) {
         validator.validateOutPutFileNameJson(outPutFileNameInJson);
         String fileName = logParser.parseStringValueFromJsonStringByKey(outPutFileNameInJson, "outPutFile");
-        log.setOutPutFile(fileName);
+        logFileAppender.setOutPutFile(fileName);
     }
 
     @Override
@@ -26,9 +26,10 @@ public class LoggerImpl implements Logger {
 
     @Override
     public void addLog(String logInJson) {
-        validator.validateOutPutFileAndLogLevelNotEmpty(log);
+        validator.validateLogLevel(log.getLevel());
         validator.validateProcessId(logInJson);
         validator.validateMessage(logInJson);
+        validator.validateOutPutFile(logFileAppender.getOutPutFile());
 
         String message = logParser.parseStringValueFromJsonStringByKey(logInJson, "message");
         int processId = logParser.parseIntValueFromJsonStringByKey(logInJson, "processId");
